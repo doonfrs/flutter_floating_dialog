@@ -1,6 +1,10 @@
 ## Floating Dialog for Flutter
 A Flutter package for creating draggable dialogs, allowing users to easily move and interact with content on the screen
 
+![Floating Dialog Usage Example](https://github.com/doonfrs/flutter_floating_dialog/blob/main/example/assets/example.gif?raw=true
+)
+
+
 ### Features
 - Simple and minimal, you can use it to create a draggable dialog in just a few lines of code.
 - Customizable dialog content: Users can add any type of widget to the dialog, allowing for a wide range of use cases.
