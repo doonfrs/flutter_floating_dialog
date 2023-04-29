@@ -87,7 +87,7 @@ You can use it inside a stack and show/hide it using a flag, or use it inside sh
                       builder: (context) {
                         return FloatingDialog(
                             onClose: () {
-                              Navigator.pop(context);
+                              Navigator.of(context).pop();
                             },
                             child: const SizedBox(
                                 height: 200,
