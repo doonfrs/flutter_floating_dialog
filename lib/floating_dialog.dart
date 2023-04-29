@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class FloatingDialog extends StatefulWidget {
   const FloatingDialog(
@@ -22,10 +23,29 @@ class FloatingDialogState extends State<FloatingDialog> {
   double _xOffset = -1;
   double _yOffset = -1;
   Rect _rect = Rect.zero;
+  final widgetKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
+  }
+
+  void postFrameCallback(_) {
+    var context = widgetKey.currentContext;
+    if (context == null) return;
+
+    if (_rect == Rect.zero && widget.autoCenter) {
+      final r = (context.findRenderObject()?.paintBounds);
+      if (r != null) {
+        // we detected the widget size, let's set and build again
+        _rect = r;
+        if (mounted) {
+          setState(() {});
+        }
+      }
+    }
   }
 
   @override
@@ -72,30 +92,8 @@ class FloatingDialogState extends State<FloatingDialog> {
                     child: Stack(
                       children: [
                         LayoutBuilder(
+                          key: widgetKey,
                           builder: (context, constraints) {
-                            if (_rect == Rect.zero && widget.autoCenter) {
-                              try {
-                                final r =
-                                    (context.findRenderObject()?.paintBounds);
-                                if (r != null) {
-                                  // we detected the widget size, let's set and build again
-                                  _rect = r;
-                                  Future.delayed(Duration.zero, () {
-                                    if (mounted) {
-                                      setState(() {});
-                                    }
-                                  });
-                                }
-                              } catch (e) {
-                                //on error it means this is the first build
-                                Future.delayed(Duration.zero, () {
-                                  if (mounted) {
-                                    setState(() {});
-                                  }
-                                });
-                              }
-                            }
-
                             return (widget.child ??
                                 const SizedBox(
                                   height: 100,
