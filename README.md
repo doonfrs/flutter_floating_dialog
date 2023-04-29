@@ -24,7 +24,9 @@ Import the package into your Dart file:
 ```dart
 import 'package:floating_dialog/floating_dialog.dart';
 ```
-Create a Floating widget inside Stack widget, show and hide it using a boolean variable:
+You can use it inside a stack and show/hide it using a flag, or use it inside showDialog() method.
+
+1 - Create a Floating widget inside Stack widget, show and hide it using a boolean variable:
 
 ```dart
   bool _showDialog = false;
@@ -63,6 +65,44 @@ Create a Floating widget inside Stack widget, show and hide it using a boolean v
           ],
         ));
   }
+
+```
+1 - Create a Floating widget inside Stack widget, show and hide it using a boolean variable:
+
+```dart
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.title),
+        ),
+        body: Stack(
+          children: [
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return FloatingDialog(
+                            onClose: () {
+                              Navigator.pop(context);
+                            },
+                            child: const SizedBox(
+                                height: 200,
+                                width: 300,
+                                child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text('Dialog Title'))));
+                      });
+                },
+                child: const Text('Show Dialog'),
+              ),
+            ),
+          ],),
+    );
+}
 
 ```
 

@@ -40,13 +40,38 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Stack(
           children: [
             Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _showDialog = true;
-                  });
-                },
-                child: const Text('Show Dialog'),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _showDialog = true;
+                      });
+                    },
+                    child: const Text('Show using stack'),
+                  ),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return FloatingDialog(
+                                onClose: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const SizedBox(
+                                    height: 200,
+                                    width: 300,
+                                    child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Text('Dialog Title'))));
+                          });
+                    },
+                    child: const Text('Show using showDialog'),
+                  ),
+                ],
               ),
             ),
             if (_showDialog)
