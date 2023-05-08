@@ -7,12 +7,22 @@ class FloatingDialog extends StatefulWidget {
       this.onClose,
       this.autoCenter = true,
       this.child,
-      this.enableDragAnimation = true});
+      this.enableDragAnimation = true,
+      this.closeIcon = const Icon(Icons.close),
+      this.closeButtonRight = 0,
+      this.closeButtonLeft,
+      this.closeButtonTop,
+      this.closeButtonBottom});
 
   final void Function()? onClose;
   final Widget? child;
   final bool enableDragAnimation;
   final bool autoCenter;
+  final Widget closeIcon;
+  final double? closeButtonRight;
+  final double? closeButtonLeft;
+  final double? closeButtonTop;
+  final double? closeButtonBottom;
 
   @override
   FloatingDialogState createState() => FloatingDialogState();
@@ -102,9 +112,12 @@ class FloatingDialogState extends State<FloatingDialog> {
                         ),
                         if (widget.onClose != null)
                           Positioned(
-                            right: 0,
+                            right: widget.closeButtonRight,
+                            left: widget.closeButtonLeft,
+                            top: widget.closeButtonTop,
+                            bottom: widget.closeButtonBottom,
                             child: IconButton(
-                              icon: const Icon(Icons.close),
+                              icon: widget.closeIcon,
                               onPressed: () {
                                 widget.onClose!();
                               },
