@@ -12,7 +12,9 @@ class FloatingDialog extends StatefulWidget {
       this.closeButtonRight = 0,
       this.closeButtonLeft,
       this.closeButtonTop,
-      this.closeButtonBottom});
+      this.closeButtonBottom,
+      this.dialogLeft,
+      this.dialogTop});
 
   final void Function()? onClose;
   final Widget? child;
@@ -23,6 +25,8 @@ class FloatingDialog extends StatefulWidget {
   final double? closeButtonLeft;
   final double? closeButtonTop;
   final double? closeButtonBottom;
+  final double? dialogLeft;
+  final double? dialogTop;
 
   @override
   FloatingDialogState createState() => FloatingDialogState();
@@ -63,6 +67,11 @@ class FloatingDialogState extends State<FloatingDialog> {
     if (_rect != Rect.zero && widget.autoCenter && _xOffset == -1) {
       _xOffset = (MediaQuery.of(context).size.width - _rect.width) / 2;
       _yOffset = (MediaQuery.of(context).size.height - _rect.height) / 2;
+    } else {
+      if (_xOffset == -1) {
+        _xOffset = widget.dialogLeft ?? _xOffset;
+        _yOffset = widget.dialogTop ?? _yOffset;
+      }
     }
     return Opacity(
         opacity: (widget.autoCenter && _rect == Rect.zero) ? 0 : 1,
