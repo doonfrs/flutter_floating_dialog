@@ -8,6 +8,9 @@
 .buildlog/
 .history
 .svn/
+generated_plugin_registrant.cc
+generated_plugin_registrant.h
+generated_plugins.cmake
 
 # IntelliJ related
 *.iml
