@@ -1,6 +1,6 @@
 name: floating_dialog
 description: A Flutter package for creating floating dragable dialogs.
-version: 1.0.1+1
+version: 1.1.1+1
 homepage: https://github.com/doonfrs/flutter_floating_dialog
 screenshots:
   - description: 'Live Example'

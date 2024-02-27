@@ -51,6 +51,9 @@ You can use it inside a stack and show/hide it using a flag, or use it inside sh
             ),
             if (_showDialog)
               FloatingDialog(
+                  onDrag: (x, y) {
+                    print('x: $x, y: $y');
+                  },
                   onClose: () {
                     setState(() {
                       _showDialog = false;

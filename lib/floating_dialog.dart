@@ -5,6 +5,7 @@ class FloatingDialog extends StatefulWidget {
   const FloatingDialog(
       {super.key,
       this.onClose,
+      this.onDrag,
       this.autoCenter = true,
       this.child,
       this.enableDragAnimation = true,
@@ -17,6 +18,7 @@ class FloatingDialog extends StatefulWidget {
       this.dialogTop});
 
   final void Function()? onClose;
+  final void Function(double x, double y)? onDrag;
   final Widget? child;
   final bool enableDragAnimation;
   final bool autoCenter;
@@ -89,12 +91,15 @@ class FloatingDialogState extends State<FloatingDialog> {
                   }
                 },
                 onPanUpdate: (details) {
-                  if (mounted) {
-                    setState(() {
-                      _xOffset += details.delta.dx;
-                      _yOffset += details.delta.dy;
-                    });
+                  if (!mounted) {
+                    return;
                   }
+                  _xOffset += details.delta.dx;
+                  _yOffset += details.delta.dy;
+
+                  widget.onDrag?.call(_xOffset, _yOffset);
+
+                  setState(() {});
                 },
                 onPanEnd: (details) {
                   if (mounted) {

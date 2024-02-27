@@ -58,6 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           context: context,
                           builder: (context) {
                             return FloatingDialog(
+                                onDrag: (x, y) {
+                                  print('x: $x, y: $y');
+                                },
                                 onClose: () {
                                   Navigator.of(context).pop();
                                 },
@@ -76,6 +79,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             if (_showDialog)
               FloatingDialog(
+                  onDrag: (x, y) {
+                    print('x: $x, y: $y');
+                  },
                   onClose: () {
                     setState(() {
                       _showDialog = false;
