@@ -6,7 +6,7 @@
 
 * Add autoSize feature & some enhancments.
 
-# 1.1.1+1
+# 1.1.0+1
 
 * Add onDrag callback.
 

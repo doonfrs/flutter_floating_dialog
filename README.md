@@ -89,6 +89,9 @@ You can use it inside a stack and show/hide it using a flag, or use it inside sh
                       context: context,
                       builder: (context) {
                         return FloatingDialog(
+                            onDrag: (x, y) {
+                              print('x: $x, y: $y');
+                            },
                             onClose: () {
                               Navigator.of(context).pop();
                             },
