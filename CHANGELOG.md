@@ -10,3 +10,8 @@
 
 * Add onDrag callback.
 
+
+# 1.1.1+1
+
+* Upgrade sdk & packages
+

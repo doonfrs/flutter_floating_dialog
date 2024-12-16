@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:floating_dialog/floating_dialog.dart';
 
@@ -59,7 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           builder: (context) {
                             return FloatingDialog(
                                 onDrag: (x, y) {
-                                  print('x: $x, y: $y');
+                                  if (kDebugMode) {
+                                    print('x: $x, y: $y');
+                                  }
                                 },
                                 onClose: () {
                                   Navigator.of(context).pop();
@@ -80,7 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
             if (_showDialog)
               FloatingDialog(
                   onDrag: (x, y) {
-                    print('x: $x, y: $y');
+                    if (kDebugMode) {
+                      print('x: $x, y: $y');
+                    }
                   },
                   onClose: () {
                     setState(() {
