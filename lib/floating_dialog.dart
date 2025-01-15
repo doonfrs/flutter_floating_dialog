@@ -16,7 +16,9 @@ class FloatingDialog extends StatefulWidget {
       this.closeButtonBottom,
       this.dialogLeft,
       this.dialogTop,
-      this.backgroundColor});
+      this.backgroundColor,
+      this.shadowColor,
+      this.elevation});
 
   final void Function()? onClose;
   final void Function(double x, double y)? onDrag;
@@ -31,6 +33,8 @@ class FloatingDialog extends StatefulWidget {
   final double? dialogLeft;
   final double? dialogTop;
   final Color? backgroundColor;
+  final Color? shadowColor;
+  final double? elevation;
 
   @override
   FloatingDialogState createState() => FloatingDialogState();
@@ -115,6 +119,8 @@ class FloatingDialogState extends State<FloatingDialog> {
                   opacity: _dragging && widget.enableDragAnimation ? 0.8 : 1.0,
                   child: Dialog(
                     backgroundColor: widget.backgroundColor,
+                    shadowColor: widget.shadowColor,
+                    elevation: widget.elevation,
                     insetPadding: EdgeInsets.zero,
                     child: Stack(
                       children: [
